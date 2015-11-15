@@ -8,27 +8,20 @@ Header = React.createClass({
     }
   },
 
-  // This mixin makes the getMeteorData method work
   mixins: [ReactMeteorData],
 
-  // Loads items from the Tasks collection and puts them on this.data.tasks
   getMeteorData() {
     Meteor.subscribe("pages");
-    Meteor.subscribe("projects");
-    Meteor.subscribe("pages");
+    Meteor.subscribe("collections");
 
     return {
-      pages: Pages.find({ published: true }).fetch(),
-      projects: Projects.find({}).fetch(),
-      items: Items.find({}).fetch()
+      pages: Pages.find({ published: true }, {fields: {name: 1, slug: 1}}).fetch(),
+      collections: Collections.find({}).fetch()
     }
   },
 
-  render() {
-
-    var loaded = !_.isEmpty(this.data.pages);
-
-    var pages = loaded && this.data.pages.map(function(page) {
+  getPages() {
+    var pages = this.data.pages.map(function(page) {
       return (
         <li key={page._id}>
           <Link to={`/${page.slug}`}>{page.name}</Link>
@@ -36,10 +29,35 @@ Header = React.createClass({
       )
     });
 
+    return pages;
+  },
+
+  getCollections() {
+    var collections = this.data.collections.map(function(collection) {
+      return (
+        <li key={collection._id}>
+          <Link to={`/collection/${collection.slug}`}>{collection.name}</Link>
+        </li>
+      );
+    });
+
+    return collections;
+  },
+
+  render() {
+    var loaded = !_.isEmpty(this.data.pages);
+    var pages, collections;
+
+    if(loaded) {
+      pages = this.getPages();
+      collections = this.getCollections();
+    }
+
     return (
       <div className="Header">
         <ul>
           {pages}
+          {collections}
         </ul>
       </div>
     );
