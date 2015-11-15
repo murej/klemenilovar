@@ -4,6 +4,15 @@ Attempt at creating a simple Meteor+React based platform for publishing photogra
 ### Data model
 ```
 {
+  pages: [
+    {
+      _id: "",
+      createdAt: "",
+      content: "",
+      background: ""
+    },
+    ...
+  ],
   projects: [
     {
       _id: ""
