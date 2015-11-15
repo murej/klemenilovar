@@ -4,11 +4,11 @@ const {
 } = ReactRouter;
 
 Routes = React.createClass({
-  getInitialState: function() {
+  getInitialState() {
     return {};
   },
 
-  getRoutes: function() {
+  getRoutes() {
     return (
       <Route component={App}>
         <Route path="/" component={HomePage} />
@@ -19,7 +19,7 @@ Routes = React.createClass({
     );
   },
 
-  render: function() {
+  render() {
     return (
       <Router history={ReactRouter.history.useQueries(ReactRouter.history.createHistory)()}>
         {this.getRoutes()}
