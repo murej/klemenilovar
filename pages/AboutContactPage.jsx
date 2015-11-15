@@ -1,4 +1,4 @@
-AboutContactPage = React.createClass({
+Page = React.createClass({
 
   getInitialState() {
     return {
@@ -21,8 +21,8 @@ AboutContactPage = React.createClass({
 
   render() {
     return (
-      <div className="AboutContactPage">
-        About–Contact Page
+      <div className="Page">
+        Generic Page
       </div>
     );
   }

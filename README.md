@@ -24,12 +24,11 @@ Attempt at creating a simple Meteor+React based platform for publishing photogra
         ...
       ],
       // optional
+      size: (int),    // 0 to 100
       position: {
-        top: (int),
-        right: (int),
-        bottom: (int),
-        left: (int)
-      }
+        x: (int),     // size/2 to 100 - size/2
+        y: (int),     // size/2 to 100 - size/2
+      },
       collections: [
         "Collection name",
         ...
@@ -45,12 +44,11 @@ Attempt at creating a simple Meteor+React based platform for publishing photogra
       year: (int)
       url: "",
       // optional
+      size: (int),    // 0 to 100
       position: {
-        top: (int),
-        right: (int),
-        bottom: (int),
-        left: (int)
-      }
+        x: (int),     // size/2 to 100 - size/2
+        y: (int),     // size/2 to 100 - size/2
+      },
       collections: [
         "Collection name",
         ...
