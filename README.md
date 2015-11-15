@@ -15,7 +15,7 @@ Attempt at creating a simple Meteor+React based platform for publishing photogra
         ...
       ],
       collections: [
-        collectionId,
+        "Collection name",
         ...
       ]
     },
@@ -29,7 +29,7 @@ Attempt at creating a simple Meteor+React based platform for publishing photogra
       year: 0000
       url: "",
       collections: [
-        collectionId,
+        "Collection name",
         ...
     },
     ...
