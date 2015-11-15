@@ -14,6 +14,13 @@ Attempt at creating a simple Meteor+React based platform for publishing photogra
         itemId,
         ...
       ],
+      // optional
+      position: {
+        top: (int),
+        right: (int),
+        bottom: (int),
+        left: (int)
+      }
       collections: [
         "Collection name",
         ...
@@ -26,11 +33,19 @@ Attempt at creating a simple Meteor+React based platform for publishing photogra
       _id: "",
       createdAt: "",
       caption: "",
-      year: 0000
+      year: (int)
       url: "",
+      // optional
+      position: {
+        top: (int),
+        right: (int),
+        bottom: (int),
+        left: (int)
+      }
       collections: [
         "Collection name",
         ...
+      ]
     },
     ...
   ]
