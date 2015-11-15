@@ -7,22 +7,63 @@ CollectionPage = React.createClass({
   },
 
   // This mixin makes the getMeteorData method work
-  // mixins: [ReactMeteorData],
+  mixins: [ReactMeteorData],
 
-  // Loads items from the Tasks collection and puts them on this.data.tasks
-  // getMeteorData() {
-    // let query = {};
-    //
-    // return {
-    //   projects: Projects.find(query, {sort: {createdAt: -1}}).fetch(),
-    //   items: Items.find(query, {sort: {createdAt: -1}}).fetch()
-    // }
-  // },
+  getMeteorData() {
+    Meteor.subscribe("collections");
+    Meteor.subscribe("projects");
+    Meteor.subscribe("items");
+
+    var slug = this.props.params.slug;
+    var collection = Collections.findOne({ slug: slug });
+    var hasProjects = !_.isEmpty(collection);
+
+    if(hasProjects) {
+      var projects = Projects.find({ published: true, collections: collection.name }).fetch();
+      // var items = Items.find({ published: true }).fetch();
+
+      projects.forEach(function(project) {
+        project.items = project.items.split(", ").map(function(itemId) {
+          var item = Items.findOne({ _id: itemId, published: true});
+          return item;
+        });
+      });
+    }
+
+    return {
+      collection: collection,
+      projects: projects
+    }
+  },
+
+  getProjects() {
+    var projects = this.data.projects.map(function(project) {
+      return (
+        <Project
+          key={project._id}
+          title={project.name}
+          description={project.description}
+          size={project.size}
+          position={{x: project.position.x, y: project.position.y}}
+          items={project.items}
+        />
+      )
+    });
+
+    return projects;
+  },
 
   render() {
+
+    var loaded = !_.isEmpty(this.data.projects);
+
+    if(!loaded) {
+      return false;
+    }
+
     return (
       <div className="CollectionPage">
-        Collection Page
+        {this.getProjects()}
       </div>
     );
   }
