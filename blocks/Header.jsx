@@ -2,12 +2,6 @@ const {Link} = ReactRouter;
 
 Header = React.createClass({
 
-  getInitialState() {
-    return {
-      // hideCompleted: false
-    }
-  },
-
   mixins: [ReactMeteorData],
 
   getMeteorData() {
@@ -46,18 +40,16 @@ Header = React.createClass({
 
   render() {
     var loaded = !_.isEmpty(this.data.pages);
-    var pages, collections;
 
-    if(loaded) {
-      pages = this.getPages();
-      collections = this.getCollections();
+    if(!loaded) {
+      return false;
     }
 
     return (
       <div className="Header">
         <ul>
-          {pages}
-          {collections}
+          {this.getPages()}
+          {this.getCollections()}
         </ul>
       </div>
     );

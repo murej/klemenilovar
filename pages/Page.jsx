@@ -22,7 +22,7 @@ Page = React.createClass({
     var loaded = !_.isEmpty(this.data.page);
 
     if(!loaded) {
-      return <Header />;
+      return false;
     }
     else {
       var page = this.data.page[0];
