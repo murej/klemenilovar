@@ -8,8 +8,9 @@ Attempt at creating a simple Meteor+React based platform for publishing photogra
     {
       _id: "",
       createdAt: "",
+      name: "",
       content: "",
-      background: ""
+      backgroundColor: ""
     },
     ...
   ],
