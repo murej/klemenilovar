@@ -13,7 +13,7 @@ Routes = React.createClass({
       <Route component={App}>
         <Route path="/" component={HomePage} />
         <Route path="collection/:collectionId" component={CollectionPage} />
-        <Route path="about-contact" component={AboutContactPage} />
+        <Route path=":pageId" component={Page} />
         <Route path="*" component={NotFoundPage}/>
       </Route>
     );
