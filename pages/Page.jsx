@@ -7,22 +7,33 @@ Page = React.createClass({
   },
 
   // This mixin makes the getMeteorData method work
-  // mixins: [ReactMeteorData],
+  mixins: [ReactMeteorData],
 
-  // Loads items from the Tasks collection and puts them on this.data.tasks
-  // getMeteorData() {
-    // let query = {};
-    //
-    // return {
-    //   projects: Projects.find(query, {sort: {createdAt: -1}}).fetch(),
-    //   items: Items.find(query, {sort: {createdAt: -1}}).fetch()
-    // }
-  // },
+  // Loads items from the Pages collection and puts them on this.data.pages
+  getMeteorData() {
+    Meteor.subscribe("pages");
+
+    return {
+      page: Pages.find({ slug: this.props.params.slug }).fetch()
+    }
+  },
 
   render() {
+    var loaded = !_.isEmpty(this.data.page);
+
+    if(!loaded) {
+      return <Header />;
+    }
+    else {
+      var page = this.data.page[0];
+      var title = page.name;
+      var content = { __html: window.marked(page.content) };
+    }
+
     return (
       <div className="Page">
-        Generic Page
+        <h1>{title}</h1>
+        <div className="Page-Content" dangerouslySetInnerHTML={content}></div>
       </div>
     );
   }

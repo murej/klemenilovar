@@ -1,6 +1,7 @@
 const {
   Router,
-  Route
+  Route,
+  Link
 } = ReactRouter;
 
 Routes = React.createClass({
@@ -9,11 +10,12 @@ Routes = React.createClass({
   },
 
   getRoutes() {
+
     return (
       <Route component={App}>
         <Route path="/" component={HomePage} />
-        <Route path="collection/:collectionId" component={CollectionPage} />
-        <Route path=":pageId" component={Page} />
+        <Route name="collection" path="/collection/:slug" component={CollectionPage} />
+        <Route name="page" path="/:slug" component={Page} />
         <Route path="*" component={NotFoundPage}/>
       </Route>
     );
