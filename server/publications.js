@@ -80,7 +80,8 @@ Houston.methods(Projects, {
         if(!collectionExists) {
           Collections.insert({
             name: collectionName,
-            slug: slug
+            slug: slug,
+            published: true
           });
         }
       });
