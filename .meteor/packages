@@ -25,3 +25,6 @@ yasaricli:slugify
 momentjs:moment
 chuangbo:marked
 ccan:cssreset
+cfs:standard-packages
+praneybehl:react-dropzone
+cfs:gridfs

@@ -8,6 +8,17 @@ Meteor.publish("collections", function () {
   return Collections.find();
 });
 
+Images.allow({
+  'insert': function () {
+    return true;
+  },
+  'update': function () {
+    return true;
+  },
+  'download': function() {
+    return true;
+  }
+});
 
 Houston.methods(Pages, {
   "Publish": function (item) {

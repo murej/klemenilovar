@@ -15,6 +15,7 @@ Routes = React.createClass({
       <Route component={App}>
         <Route path="/" component={HomePage} />
         <Route name="collection" path="/collection/:slug" component={CollectionPage} />
+        <Route name="upload" path="/upload" component={UploadPage} />
         <Route name="page" path="/:slug" component={Page} />
         <Route path="*" component={NotFoundPage}/>
       </Route>

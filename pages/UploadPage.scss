@@ -1,0 +1,18 @@
+@import "{}/App";
+
+.UploadPage {
+  height: 100%;
+
+  & > div {
+    width: 100%;
+    height: 100%;
+
+    @include display(flex);
+    @include align-items(center);
+    @include justify-content(center);
+
+    & > div {
+
+    }
+  }
+}
