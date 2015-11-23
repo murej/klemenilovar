@@ -12,7 +12,6 @@ CollectionPage = React.createClass({
   getMeteorData() {
     Meteor.subscribe("collections");
     Meteor.subscribe("projects");
-    Meteor.subscribe("items");
 
     var slug = this.props.params.slug;
     var collection = Collections.findOne({ slug: slug });
@@ -20,12 +19,8 @@ CollectionPage = React.createClass({
 
     if(hasProjects) {
       var projects = Projects.find({ published: true, collections: collection.name }).fetch();
-      // var items = Items.find({ published: true }).fetch();
-
       projects.forEach(function(project) {
         project.items = project.items.split(", ").map(function(itemId) {
-          var item = Items.findOne({ _id: itemId, published: true});
-          return item;
         });
       });
     }

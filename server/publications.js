@@ -4,9 +4,6 @@ Meteor.publish("pages", function () {
 Meteor.publish("projects", function () {
   return Projects.find();
 });
-Meteor.publish("items", function () {
-  return Items.find();
-});
 Meteor.publish("collections", function () {
   return Collections.find();
 });
@@ -88,41 +85,6 @@ Houston.methods(Projects, {
   }
 });
 
-Houston.methods(Items, {
-  "Publish": function (item) {
-    var createdAt = moment(item.createdAt).isValid() ? item.createdAt : new Date();
-
-    Items.update(item._id, {$set: {
-      createdAt: createdAt,
-      published: true
-    }});
-
-    var collections = item.collections && item.collections.split(", ");
-    var hasCollections = !_.isEmpty(collections);
-    var collectionNames = hasCollections && collections.forEach(function(collectionName) {
-      var slug = slugify(collectionName);
-      var collectionExists = Collections.find({slug: slug}).count() !== 0;
-      if(!collectionExists) {
-        Collections.insert({
-          name: collectionName,
-          slug: slug
-        });
-      }
-    });
-
-    return "Item has been published.";
-  },
-  "Unpublish": function (item) {
-    Items.update(item._id, {$set: {
-      published: false
-    }});
-
-    Meteor.call("checkCollectionPopulation", item);
-
-    return "Item unpublished.";
-  }
-});
-
 Meteor.methods({
   checkCollectionPopulation(item) {
     var collections = item.collections && item.collections.split(", ");
@@ -130,8 +92,7 @@ Meteor.methods({
     var collectionNames = hasCollections && collections.forEach(function(collectionName) {
       var slug = slugify(collectionName);
       var hasProjects = Projects.find({published: true, collections: collectionName}).count() !== 0;
-      var hasItems = Items.find({published: true, collections: collectionName}).count() !== 0;
-      if(!hasProjects && !hasItems) {
+      if(!hasProjects) {
         Collections.remove({
           slug: slug
         });
