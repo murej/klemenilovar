@@ -12,6 +12,7 @@ CollectionPage = React.createClass({
   getMeteorData() {
     Meteor.subscribe("collections");
     Meteor.subscribe("projects");
+    Meteor.subscribe("images");
 
     var slug = this.props.params.slug;
     var collection = Collections.findOne({ slug: slug });
@@ -21,6 +22,7 @@ CollectionPage = React.createClass({
       var projects = Projects.find({ published: true, collections: collection.name }).fetch();
       projects.forEach(function(project) {
         project.items = project.items.split(", ").map(function(itemId) {
+          return Images.findOne({ _id: itemId });
         });
       });
     }

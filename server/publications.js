@@ -7,6 +7,9 @@ Meteor.publish("projects", function () {
 Meteor.publish("collections", function () {
   return Collections.find();
 });
+Meteor.publish("images", function () {
+  return Images.find();
+});
 
 Images.allow({
   'insert': function () {

@@ -26,7 +26,7 @@ Project = React.createClass({
         <Item
           key={item._id}
           caption={item.caption}
-          image={item.url}
+          image={item.url()}
         />
       )
     });
