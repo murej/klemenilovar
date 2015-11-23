@@ -25,16 +25,16 @@ Page = React.createClass({
       return false;
     }
     else {
+
       var page = this.data.page[0];
-      var title = page.name;
-      var content = { __html: window.marked(page.content) };
+      // var title = page.name;
       var style = page.style;
+      var content = page.content
     }
 
     return (
       <div className="Page" style={ style }>
-        <h1>{title}</h1>
-        <div className="Page-Content" dangerouslySetInnerHTML={content}></div>
+        <GenericContent content={ content } />
       </div>
     );
   }

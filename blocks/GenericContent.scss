@@ -1,0 +1,23 @@
+@import "{}/App";
+
+.GenericContent {
+
+  max-width: 992px;
+  margin: lines(6) auto;
+
+  @include font-scale(0);
+
+  h1 {
+    margin: lines(1) lines(1);
+  }
+  h2 {
+    margin: lines(1) lines(2);
+  }
+  h3 {
+    margin: lines(1) lines(3);
+  }
+
+  a {
+    border-bottom: 1px solid black;
+  }
+}
