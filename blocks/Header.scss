@@ -1,2 +1,57 @@
 @import "{}/App";
 
+.Header {
+  position: fixed;
+  height: auto !important;
+  z-index: 999;
+  @include display(flex);
+  @include font-scale(1);
+  letter-spacing: 3.36px;
+
+  .Header-Navigation {
+    @include display(flex);
+  }
+    .Header-NavigationElement {
+      margin-right: lines(1.5);
+    }
+  .Header-Logo {
+    @include flex(1);
+    text-align: right;
+
+    a {
+      border: none;
+      text-decoration: none;
+    }
+
+    /** TODO: CLEAN UP ***/
+    $headerfs: 15;
+
+    letter-spacing: (5.5/$headerfs)*1em; // 0.21em za 16px
+
+    span {
+      display: inline-block;
+      position: relative;
+    }
+
+    span.Header-Logo-1 {  } // k
+    span.Header-Logo-2 { transform: rotate(15deg); top: (1/$headerfs)*1em; } // l
+    span.Header-Logo-3 { transform: rotate(30deg); top: (2/$headerfs)*1em; } // e
+    span.Header-Logo-4 { transform: rotate(45deg); top: (2.5/$headerfs)*1em; } // m
+    span.Header-Logo-5 { transform: rotate(60deg); top: (3/$headerfs)*1em; } // e
+    span.Header-Logo-6 { transform: rotate(75deg); top: (4/$headerfs)*1em; } // n
+
+    span.Header-Logo-7 { transform: rotate(90deg); top: (3/$headerfs)*1em; } // i
+    span.Header-Logo-8 { transform: rotate(72deg); top: (5/$headerfs)*1em; left: (0/$headerfs)*1em; } // l
+    span.Header-Logo-9 { transform: rotate(54deg); top: (-3/$headerfs)*1em;left: (4/$headerfs)*1em; } // o
+    span.Header-Logo-10 { transform: rotate(36deg); top: (-7/$headerfs)*1em; left: (2/$headerfs)*1em; } // v
+    span.Header-Logo-11 { transform: rotate(18deg); top: (-12/$headerfs)*1em; left: (3/$headerfs)*1em; } // a
+    span.Header-Logo-12 { top: (-15/$headerfs)*1em; } // r
+
+    span.under {
+      line-height: 0;
+    }
+    /***/
+
+
+  }
+}
