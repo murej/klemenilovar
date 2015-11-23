@@ -26,7 +26,7 @@ UploadPage = React.createClass({
 
     return (
       <div className="UploadPage">
-        { Meteor.user() ? <Dropzone onDrop={this.onDrop} style={{}}>{status}</Dropzone> : <div><div>Login first.</div></div> }
+        { Meteor.userId() ? <Dropzone onDrop={this.onDrop} style={{}}>{status}</Dropzone> : <div><div>Login first.</div></div> }
       </div>
     );
   }
