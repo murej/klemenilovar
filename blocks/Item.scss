@@ -1,2 +1,16 @@
 @import "{}/App";
 
+.Item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: e-resize;
+
+  .Item-Content {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
