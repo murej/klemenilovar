@@ -20,13 +20,30 @@ Project = React.createClass({
     };
   },
 
+  getInitialState() {
+    return {
+      imageIndex: 0
+    }
+  },
+
   getItems() {
-    var items = this.props.items.map(function(item) {
+    var size = this.props.size;
+    var position = this.props.position;
+    var showNextItem = this.showNextItem;
+    var currentIndex = this.state.imageIndex;
+    var items = this.props.items.map(function(item, index) {
+
+      var isVisible = index === currentIndex;
+
       return (
         <Item
           key={item._id}
           caption={item.caption}
           image={item.url()}
+          size={size}
+          position={position}
+          onNextItem={showNextItem}
+          isVisible={isVisible}
         />
       )
     });
@@ -35,14 +52,33 @@ Project = React.createClass({
   },
 
   render() {
+
+    var sideStyle = {
+      top: this.props.position.y+"vh"
+    }
+
     return (
       <div className="Project">
-        <h2>{this.props.title}</h2>
-        <p><span ref="Project-CurrentItem">1</span>/{this.props.items.length}</p>
+        <div className="Project-Side" style={sideStyle}>
+          <h2>{this.props.title}</h2>
+          <p>{this.props.description}</p>
+          <p><span ref="Project-CurrentItem">{this.state.imageIndex+1}</span>/{this.props.items.length}</p>
+        </div>
         <ul className="Project-Items">
           {this.getItems()}
         </ul>
       </div>
     );
+  },
+
+  showNextItem() {
+    this.setState(function(prevState, currentProps) {
+
+      var itemLenght = this.props.items.length;
+      var hasReachedEnd = prevState.imageIndex === itemLenght - 1;
+      var newImageIndex = hasReachedEnd ? 0 : prevState.imageIndex + 1;
+
+      return { imageIndex: newImageIndex };
+    });
   }
 });
